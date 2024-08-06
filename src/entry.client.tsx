@@ -5,25 +5,16 @@ import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import { ThemeProvider } from "tenantuikit";
-
-const lightTheme = {
-  primary: "#ffffff",
-  secondary: "#000000",
-};
-
-export const darkTheme = {
-  colors: {
-    primary: "#000000",
-    secondary: "#ffffff",
-  },
-};
+import { GlobalStyle } from "./theme/global-styles";
+import theme from "./theme";
 
 ReactDOM.hydrateRoot(
   document.getElementById("app") as HTMLElement,
   <React.StrictMode>
     <BrowserRouter>
-      <ThemeProvider theme={lightTheme}>
+      <ThemeProvider theme={theme}>
         <App />
+        <GlobalStyle />
       </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>

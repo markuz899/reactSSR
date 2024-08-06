@@ -1,5 +1,6 @@
 import { styled } from "tenantuikit";
 import Layout from "../containers/Layout";
+import theme from "../theme";
 
 const Contact = ({ global }: any) => {
   const { sections } = global;
@@ -18,7 +19,7 @@ const Contact = ({ global }: any) => {
 export default Contact;
 
 const Page = styled.div`
-  border: 1px solid red;
+  border: 1px solid ${theme.colors.warning};
   background: ${({ theme }: any) => theme.primary};
   color: ${({ theme }: any) => theme.secondary};
 `;

@@ -5,11 +5,8 @@ import { StaticRouter } from "react-router-dom/server";
 import App from "./App";
 import { ServerStyleSheet, StyleSheetManager } from "styled-components";
 import { ThemeProvider } from "tenantuikit";
-
-const lightTheme = {
-  primary: "#ffffff",
-  secondary: "#000000",
-};
+import { GlobalStyle } from "./theme/global-styles";
+import theme from "./theme";
 
 export function render(url: string) {
   const sheet = new ServerStyleSheet();
@@ -17,8 +14,9 @@ export function render(url: string) {
     <React.StrictMode>
       <StaticRouter location={url}>
         <StyleSheetManager sheet={sheet.instance}>
-          <ThemeProvider theme={lightTheme}>
+          <ThemeProvider theme={theme}>
             <App />
+            <GlobalStyle />
           </ThemeProvider>
         </StyleSheetManager>
       </StaticRouter>
