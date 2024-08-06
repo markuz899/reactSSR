@@ -1,9 +1,11 @@
 let path = require("path");
 let fsp = require("fs/promises");
 let express = require("express");
+require("dotenv").config();
 
 let root = process.cwd();
 let isProduction = process.env.NODE_ENV === "production";
+let port = process.env.PORT || 3000;
 
 function resolve(p) {
   return path.resolve(__dirname, p);
@@ -67,7 +69,7 @@ async function createServer() {
 }
 
 createServer().then((app) => {
-  app.listen(3000, () => {
-    console.log("HTTP server is running at http://localhost:3000");
+  app.listen(port, () => {
+    console.log(`HTTP server is running at http://localhost:${port}`);
   });
 });
