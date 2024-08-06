@@ -53,7 +53,7 @@ async function createServer() {
         );
       }
 
-      let html = template.replace("<!--app-html-->", render(url));
+      let html = template.replace("<!--app-html-->", render({ url }));
       res.setHeader("Content-Type", "text/html");
       return res.status(200).end(html);
     } catch (error) {

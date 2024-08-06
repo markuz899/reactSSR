@@ -8,11 +8,15 @@ import { ThemeProvider } from "tenantuikit";
 import { GlobalStyle } from "./theme/global-styles";
 import theme from "./theme";
 
-export function render(url: string) {
+interface IRenderProps {
+  url: string;
+}
+
+export function render({ url }: IRenderProps) {
   const sheet = new ServerStyleSheet();
   return ReactDOMServer.renderToString(
     <React.StrictMode>
-      <StaticRouter location={url}>
+      <StaticRouter location={url || "/"}>
         <StyleSheetManager sheet={sheet.instance}>
           <ThemeProvider theme={theme}>
             <App />

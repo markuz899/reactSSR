@@ -117,39 +117,36 @@ import { useMemo } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { componentMap, createRoutes, routesApi } from "./pages";
 import Router from "./containers/Router";
-import "./App.css";
 
 function App() {
   const routes = useMemo(() => createRoutes(routesApi), [routesApi]);
 
   return (
-    <div>
-      <Routes>
-        {routes.map((route: any) => {
-          const Component = componentMap[route.component];
-          if (!Component) {
-            console.error(`Component ${route.component} not found`);
-            return null;
-          }
-          return (
-            <Route
-              key={route.path}
-              path={route.path}
-              element={
-                <Router
-                  component={Component}
-                  shield={route.shield}
-                  hidden={route.hidden}
-                  isAuth={false}
-                  data={{ sections: route.sections }}
-                />
-              }
-            />
-          );
-        })}
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
-    </div>
+    <Routes>
+      {routes.map((route: any) => {
+        const Component = componentMap[route.component];
+        if (!Component) {
+          console.error(`Component ${route.component} not found`);
+          return null;
+        }
+        return (
+          <Route
+            key={route.path}
+            path={route.path}
+            element={
+              <Router
+                component={Component}
+                shield={route.shield}
+                hidden={route.hidden}
+                isAuth={false}
+                data={{ sections: route.sections }}
+              />
+            }
+          />
+        );
+      })}
+      <Route path="*" element={<Navigate to="/" />} />
+    </Routes>
   );
 }
 

@@ -26,7 +26,6 @@ export const GlobalStyle = createGlobalStyle`
   html,
   body {
     margin: 0;
-    background: ${theme.colors.white};
     color: ${theme.colors.dark};
     height: 100%;
     width: 100%;
