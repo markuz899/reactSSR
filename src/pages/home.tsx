@@ -1,4 +1,4 @@
-import { Button, Icon, Radio } from "tenantuikit";
+import { Button, Checkbox, Icon, Radio } from "tenantuikit";
 import Layout from "../containers/Layout";
 import theme from "../theme";
 
@@ -8,17 +8,20 @@ const Home = ({ global }: any) => {
     <Layout>
       <h1>Home</h1>
       <Icon name="zoom" size={theme.spaces.space4} />
+      <Checkbox
+        name="terms"
+        label="Checkbox label"
+        onChange={(data) => console.log(data)}
+      />
       <Radio
         name={"radio"}
         inline
+        onChange={(data) => console.log(data)}
         options={[
           { label: "One", value: 1 },
           { label: "Two", value: 2 },
           { label: "Three", value: 3 },
         ]}
-        onChange={(data: any) => {
-          console.log(data);
-        }}
       />
       <Button label="from tenant ui kit" />
       <div>
