@@ -4,7 +4,9 @@ import defaultTheme from "./tenant/default";
 let palette;
 try {
   /* @vite-ignore */
-  const module = await import(`./tenant/${import.meta.env.VITE_TENANT}`);
+  const module = await import(
+    /* @vite-ignore */ `./tenant/${import.meta.env.VITE_TENANT}`
+  );
   palette = module.default;
 } catch (error) {
   console.error(`Theme not found: ${import.meta.env.VITE_TENANT}`);
