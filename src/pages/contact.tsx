@@ -1,4 +1,4 @@
-import { styled } from "tenantuikit";
+import { styled } from "styled-components";
 import Layout from "../containers/Layout";
 import theme from "../theme";
 
