@@ -14,7 +14,7 @@ interface IRenderProps {
 
 export function render({ url }: IRenderProps) {
   const sheet = new ServerStyleSheet();
-  return ReactDOMServer.renderToString(
+  const html = ReactDOMServer.renderToString(
     <React.StrictMode>
       <StaticRouter location={url || "/"}>
         <StyleSheetManager sheet={sheet.instance}>
@@ -26,4 +26,5 @@ export function render({ url }: IRenderProps) {
       </StaticRouter>
     </React.StrictMode>
   );
+  return { html, head: sheet.instance };
 }

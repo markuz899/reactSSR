@@ -17,6 +17,9 @@ async function createServer() {
    * @type {import('vite').ViteDevServer}
    */
   let vite;
+  const ssrManifest = isProduction
+    ? resolve("./dist/client/ssr-manifest.json", "utf-8")
+    : undefined;
 
   if (!isProduction) {
     vite = await require("vite").createServer({
@@ -48,12 +51,14 @@ async function createServer() {
           resolve("dist/client/index.html"),
           "utf8"
         );
-        render = await import(resolve("dist/server/entry.server.mjs")).then(
-          (m) => m.render
-        );
+        render = (await import("./dist/server/entry.server.mjs")).render;
       }
 
-      let html = template.replace("<!--app-html-->", render({ url }));
+      const rendered = await render({ url }, ssrManifest);
+
+      const html = template
+        .replace(`/* app-head */`, rendered.head ?? "")
+        .replace(`<!--app-html-->`, rendered.html ?? "");
       res.setHeader("Content-Type", "text/html");
       return res.status(200).end(html);
     } catch (error) {
