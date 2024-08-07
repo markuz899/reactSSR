@@ -1,11 +1,13 @@
 let path = require("path");
 let fsp = require("fs/promises");
 let express = require("express");
+const sirv = require("sirv");
+const compress = require("compression")();
 require("dotenv").config();
 
-let root = process.cwd();
-let isProduction = process.env.NODE_ENV === "production";
-let port = process.env.PORT || 3000;
+const root = process.cwd();
+const isProduction = process.env.NODE_ENV === "production";
+const port = process.env.PORT || 3000;
 
 function resolve(p) {
   return path.resolve(__dirname, p);
@@ -29,8 +31,10 @@ async function createServer() {
 
     app.use(vite.middlewares);
   } else {
-    app.use(require("compression")());
-    app.use(express.static(resolve("dist/client")));
+    const assets = sirv("./dist/client", {
+      extensions: [],
+    });
+    app.use(compress, assets);
   }
 
   app.use("*", async (req, res) => {
