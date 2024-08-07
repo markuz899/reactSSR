@@ -43,6 +43,7 @@ async function createServer() {
     try {
       let template;
       let render;
+      let css;
 
       if (!isProduction) {
         template = await fsp.readFile(resolve("index.html"), "utf8");
@@ -61,8 +62,9 @@ async function createServer() {
       const rendered = await render({ url }, ssrManifest);
 
       const html = template
-        .replace(`/* app-head */`, rendered.head ?? "")
+        .replace(`<!-- app-head -->`, rendered.head ?? "")
         .replace(`<!--app-html-->`, rendered.html ?? "");
+
       res.setHeader("Content-Type", "text/html");
       return res.status(200).end(html);
     } catch (error) {

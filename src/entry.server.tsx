@@ -26,5 +26,7 @@ export function render({ url }: IRenderProps) {
       </StaticRouter>
     </React.StrictMode>
   );
-  return { html, head: sheet.instance };
+  const styleTags = sheet.getStyleTags();
+  sheet.seal();
+  return { html, head: styleTags };
 }
