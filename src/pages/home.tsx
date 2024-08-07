@@ -11,7 +11,7 @@ const Home = ({ global }: any) => {
       <Checkbox
         name="terms"
         label="Checkbox label"
-        onChange={(data) => console.log(data)}
+        onChange={(data: any) => console.log(data)}
       />
       <Radio
         name={"radio"}
