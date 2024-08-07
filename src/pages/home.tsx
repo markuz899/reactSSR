@@ -1,9 +1,10 @@
-import { Button, Checkbox, Icon, Radio } from "tenantuikit";
 import Layout from "../containers/Layout";
 import theme from "../theme";
+import { Checkbox, Icon, Radio } from "../components";
 
 const Home = ({ global }: any) => {
   const { sections } = global;
+
   return (
     <Layout>
       <h1>Home</h1>
@@ -23,7 +24,6 @@ const Home = ({ global }: any) => {
           { label: "Three", value: 3 },
         ]}
       />
-      <Button label="from tenant ui kit" />
       <div>
         {sections?.map((el: any) => {
           return <div key={el.sectionName}>{el.sectionName}</div>;

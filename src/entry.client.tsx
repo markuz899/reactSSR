@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 
 import "./index.css";
 import App from "./App";
-import { ThemeProvider } from "tenantuikit";
+import { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "./theme/global-styles";
 import theme from "./theme";
 
