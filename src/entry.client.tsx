@@ -8,8 +8,7 @@ import { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "./theme/global-styles";
 import theme from "./theme";
 
-ReactDOM.hydrateRoot(
-  document.getElementById("app") as HTMLElement,
+ReactDOM.createRoot(document.getElementById("app") as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
       <ThemeProvider theme={theme}>
