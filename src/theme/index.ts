@@ -1,20 +1,23 @@
 import { ITheme } from "./interface";
 import defaultTheme from "./tenant/default";
+import primary from "./tenant/primary";
 
-let palette;
+let custom = {};
+let palette: any = {
+  primary,
+};
+
 try {
-  /* @vite-ignore */
-  const module = await import(
-    /* @vite-ignore */ `./tenant/${import.meta.env.VITE_TENANT}`
-  );
-  palette = module.default;
+  if (palette[import.meta.env.VITE_TENANT]) {
+    custom = palette[import.meta.env.VITE_TENANT];
+  }
 } catch (error) {
   console.error(`Theme not found: ${import.meta.env.VITE_TENANT}`);
 }
 
 const theme: ITheme = {
   ...defaultTheme,
-  ...palette,
+  ...custom,
 };
 
 export const availableSize: string[] = ["xs", "sm", "md", "lg", "xl"];
